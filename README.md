@@ -42,7 +42,7 @@ Then open the printed `http://<ip>:8000` in the headset browser.
 > **WebXR needs a secure context.** `localhost` counts as secure, so desktop testing
 > works immediately. A headset hitting your laptop over the LAN by IP does **not**,
 > and the "Enter AR" button will not appear. Options, easiest first:
-> 1. **GitHub Pages** — push this repo, enable Pages, open the `https://` URL in the headset. Best for classroom use.
+> 1. **GitHub Pages** — the classroom setup. See [Deploying](#deploying-the-headset-url) below.
 > 2. `npx serve --ssl-cert ... --ssl-key ...` with a self-signed cert, then accept the warning on the headset.
 > 3. Chrome's `chrome://flags/#unsafely-treat-insecure-origin-as-secure` for quick bench testing only.
 >
@@ -51,6 +51,38 @@ Then open the printed `http://<ip>:8000` in the headset browser.
 
 Opening `index.html` as a `file://` URL will **not** work: the content sheet is
 fetched over HTTP. The app tells you this on screen if it happens.
+
+---
+
+## Deploying (the headset URL)
+
+The headsets load the instructions from GitHub Pages:
+
+**https://kevinaroe.github.io/ar-work-instructions/**
+
+Pages serves the `main` branch from the repo root, so **pushing to `main` is the
+deploy**. There is no build step and no workflow to maintain; the empty `.nojekyll`
+file just tells Pages to publish the tree as-is rather than running it through Jekyll.
+
+Watch a deploy land under the repo's **Actions** tab (`pages build and deployment`).
+It takes about a minute.
+
+Publish a content edit:
+
+```bash
+# 1. bump "revision" in content/dogtag-h2d.json
+# 2. bump CACHE in sw.js   <- headsets serve the old sheet from cache without this
+git add -A && git commit -m "Revise dog tag procedure" && git push
+```
+
+Give it about a minute, then reload in the headset. Because `sw.js` caches the app,
+a headset that has run the job before may need one extra reload to pick up a new
+revision — bumping `CACHE` is what forces it.
+
+> **This repo and its published site are public.** Pages cannot serve a private repo
+> on a free plan, and a Pages site is readable by anyone with the URL regardless.
+> Do not put student names, or anything you would not hand to a stranger, into the
+> content sheet. `approvedBy` (your name) will be visible.
 
 ---
 
