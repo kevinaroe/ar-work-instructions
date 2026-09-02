@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0e14">
+<title>AR Work Instructions</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b0e14'/%3E%3Cpath d='M9 16.5l4.5 4.5L23 11.5' stroke='%234da3ff' stroke-width='3.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="overlay-root">
+
+  <!-- ===== Top status bar ===== -->
+  <header id="hud" hidden>
+    <div class="hud-left">
+      <span id="hud-phase" class="chip">Prepare</span>
+      <span id="hud-count" class="hud-count">Step 1 / 17</span>
+    </div>
+    <div class="hud-right">
+      <button id="btn-mic" class="icon-btn" title="Toggle voice control" aria-pressed="false">🎤</button>
+      <button id="btn-tts" class="icon-btn" title="Toggle read aloud" aria-pressed="false">🔊</button>
+      <button id="btn-help" class="icon-btn" title="Troubleshooting">🛠</button>
+      <button id="btn-exit" class="icon-btn danger" title="Exit to menu">✕</button>
+    </div>
+    <div id="progressbar"><div id="progressfill"></div></div>
+  </header>
+
+  <!-- ===== Emergency banner, always reachable during a run ===== -->
+  <div id="estop-bar" hidden>
+    <strong>STOP THE JOB</strong> if you see flame, smell sharp chemical, or the part shifts. Stop first — then open the door.
+  </div>
+
+  <!-- ===== Screen: Home ===== -->
+  <main id="screen-home" class="screen">
+    <div class="card hero">
+      <p class="eyebrow">AR Work Instructions</p>
+      <h1 id="home-title">Laser Engrave a Dog Tag</h1>
+      <p id="home-machine" class="sub">Bambu Lab H2D — Laser Module</p>
+      <p id="home-summary" class="body"></p>
+      <dl class="meta">
+        <div><dt>Steps</dt><dd id="home-steps">—</dd></div>
+        <div><dt>Time</dt><dd id="home-time">—</dd></div>
+        <div><dt>Rev</dt><dd id="home-rev">—</dd></div>
+      </dl>
+      <div class="actions">
+        <button id="btn-start" class="btn primary big">Start</button>
+        <button id="btn-ar" class="btn ghost big" hidden>Enter AR</button>
+      </div>
+      <p id="resume-line" class="hint" hidden>
+        You left off at step <span id="resume-step"></span>.
+        <button id="btn-resume" class="linkbtn">Resume</button>
+      </p>
+      <p id="xr-status" class="hint"></p>
+    </div>
+  </main>
+
+  <!-- ===== Screen: PPE gate ===== -->
+  <section id="screen-ppe" class="screen" hidden>
+    <div class="card">
+      <p class="eyebrow hazard-high">Safety gate</p>
+      <h2>Before you touch the machine</h2>
+      <p class="body">Tick each item only after you have actually done it. The Start button unlocks when all are checked.</p>
+      <ul id="ppe-list" class="checklist"></ul>
+      <div class="panel danger-panel">
+        <h3>Never laser these</h3>
+        <ul id="forbidden-list" class="bullets"></ul>
+      </div>
+      <div class="actions">
+        <button id="btn-ppe-back" class="btn ghost">Back</button>
+        <button id="btn-ppe-go" class="btn primary" disabled>Begin work — 0 / 0</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Screen: Step ===== -->
+  <section id="screen-step" class="screen" hidden>
+    <div class="card step-card">
+      <div class="step-head">
+        <span id="step-hazard" class="hazard-pill">low</span>
+        <h2 id="step-title">—</h2>
+      </div>
+      <p id="step-why" class="why"></p>
+
+      <h3 class="section-label">Do this</h3>
+      <ol id="step-do" class="do-list"></ol>
+
+      <div id="step-warn-wrap" class="panel danger-panel" hidden>
+        <h3>Warning</h3>
+        <ul id="step-warn" class="bullets"></ul>
+      </div>
+
+      <h3 class="section-label">Before moving on</h3>
+      <ul id="step-checks" class="checklist"></ul>
+    </div>
+
+    <nav id="stepnav">
+      <button id="btn-prev" class="btn ghost">◀ Back</button>
+      <button id="btn-repeat" class="btn ghost" title="Read this step aloud again">↻ Repeat</button>
+      <button id="btn-next" class="btn primary">Next ▶</button>
+    </nav>
+  </section>
+
+  <!-- ===== Screen: Troubleshooting ===== -->
+  <section id="screen-help" class="screen" hidden>
+    <div class="card">
+      <p class="eyebrow">Troubleshooting</p>
+      <h2>Something looks wrong</h2>
+      <div id="help-list"></div>
+      <div class="actions"><button id="btn-help-back" class="btn primary">Back to step</button></div>
+    </div>
+  </section>
+
+  <!-- ===== Screen: Done ===== -->
+  <section id="screen-done" class="screen" hidden>
+    <div class="card hero">
+      <p class="eyebrow ok">Complete</p>
+      <h1>Job finished</h1>
+      <p class="body">You ran the H2D laser end to end and left the station clean.</p>
+      <dl class="meta">
+        <div><dt>Steps done</dt><dd id="done-steps">—</dd></div>
+        <div><dt>Elapsed</dt><dd id="done-time">—</dd></div>
+      </dl>
+      <div class="panel">
+        <h3>Sign off</h3>
+        <p class="body">Show your tag and this screen to your instructor, then sign the machine log.</p>
+      </div>
+      <div class="actions">
+        <button id="btn-again" class="btn primary big">Run another</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Voice toast ===== -->
+  <div id="toast" hidden></div>
+
+</div>
+
+<canvas id="xr-canvas"></canvas>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,394 @@
+{
+  "id": "dogtag-h2d",
+  "title": "Laser Engrave a Dog Tag",
+  "machine": "Bambu Lab H2D — Laser Module",
+  "revision": "1.0",
+  "revised": "2026-09-02",
+  "approvedBy": "REPLACE WITH INSTRUCTOR NAME",
+  "estimatedMinutes": 25,
+  "summary": "Engrave a student name onto a metal dog tag blank using the H2D laser module and Bambu Suite.",
+
+  "ppe": [
+    { "id": "goggles", "label": "Laser goggles on hand (OD5+, 200-450 nm)", "note": "Required any time the enclosure is open with the laser armed. Closed enclosure = Class 1." },
+    { "id": "glasses", "label": "Safety glasses", "note": "For handling and deburring blanks." },
+    { "id": "hair", "label": "Long hair tied back, no loose sleeves or cords", "note": "" },
+    { "id": "extinguisher", "label": "I can point to the fire extinguisher from where I stand", "note": "Class ABC. Know it BEFORE you start, not during." },
+    { "id": "estop", "label": "I know where the E-stop / power switch is", "note": "" },
+    { "id": "supervised", "label": "An instructor is present and has cleared me to run this machine", "note": "Never run the laser alone." }
+  ],
+
+  "materials": [
+    "Metal dog tag blanks — anodized aluminum or coated stainless (shop bin B-4)",
+    "Laser platform (the honeycomb/slat bed, NOT the 3D print build plate)",
+    "Laser jig or masking tape to hold blanks flat",
+    "Focus calibration card (lives in the machine drawer)",
+    "Lint-free cloth + isopropyl alcohol",
+    "Needle-nose pliers or tweezers (tags come out HOT)"
+  ],
+
+  "forbiddenMaterials": [
+    "PVC / vinyl / faux leather — releases chlorine gas, destroys the machine and your lungs",
+    "ABS — releases cyanide compounds",
+    "Polycarbonate / Lexan — burns, does not cut, ruins the lens",
+    "Anything mirrored or bare polished metal — reflects the beam back",
+    "Anything you cannot positively identify. If you do not know what it is, do not laser it."
+  ],
+
+  "steps": [
+    {
+      "id": 1,
+      "phase": "Prepare",
+      "title": "Read the job card",
+      "hazard": "none",
+      "seconds": 60,
+      "why": "Knowing what 'done' looks like before you start is what separates a part from scrap.",
+      "do": [
+        "You are making one metal dog tag with a name engraved on it.",
+        "Machine: Bambu Lab H2D with the laser module installed.",
+        "Software: Bambu Suite on the station laptop.",
+        "Budget about 25 minutes end to end."
+      ],
+      "checks": ["I can state in one sentence what I am about to make."],
+      "warn": [],
+      "voice": "Read the job card. You are making one metal dog tag on the H2D laser. About 25 minutes."
+    },
+    {
+      "id": 2,
+      "phase": "Prepare",
+      "title": "Safety briefing and PPE",
+      "hazard": "high",
+      "seconds": 180,
+      "why": "The H2D uses a 450 nanometer blue diode laser. With the enclosure closed it is Class 1 and safe to watch. With the enclosure OPEN and the laser armed, it can permanently blind you faster than you can blink.",
+      "do": [
+        "Work through every item on the PPE checklist screen. Do not skip-tap it.",
+        "Put the laser goggles where you can reach them without walking away.",
+        "Confirm the fire extinguisher is present and unobstructed.",
+        "Confirm an instructor knows you are starting a laser job."
+      ],
+      "checks": [
+        "All PPE boxes are ticked and I actually did each one.",
+        "I know the two ways to stop this machine: the touchscreen Stop button and the power switch."
+      ],
+      "warn": [
+        "NEVER defeat, tape, or trick the door interlock.",
+        "NEVER look into the beam, and never at the bright spot without goggles when the door is open.",
+        "NEVER leave a running laser unattended, not even for 30 seconds."
+      ],
+      "voice": "Safety briefing. Blue laser, 450 nanometers. Goggles within reach, extinguisher located, instructor present. Never defeat the door interlock and never leave the laser running unattended."
+    },
+    {
+      "id": 3,
+      "phase": "Prepare",
+      "title": "Confirm the material is laser-safe",
+      "hazard": "high",
+      "seconds": 60,
+      "why": "Lasering the wrong plastic fills the room with poison gas and can start a fire inside a closed box.",
+      "do": [
+        "Pick up your blank. Confirm it is a metal dog tag from bin B-4.",
+        "Check it against the forbidden materials list on this screen.",
+        "If the blank is unlabeled or you are not sure what it is, stop and ask your instructor."
+      ],
+      "checks": ["My blank is metal and came from the approved bin."],
+      "warn": ["If in doubt, do not laser it. There is no penalty for asking. There is a large penalty for chlorine gas."],
+      "voice": "Confirm your blank is approved metal from bin B4. If you cannot identify the material, stop and ask."
+    },
+    {
+      "id": 4,
+      "phase": "Prepare",
+      "title": "Turn on ventilation",
+      "hazard": "med",
+      "seconds": 60,
+      "why": "Engraving produces fine particulate and fumes. The extraction has to be moving air BEFORE the beam fires.",
+      "do": [
+        "Confirm the exhaust hose is clamped to the port on the back of the printer and is not kinked or crushed.",
+        "Confirm the far end vents outdoors, or into the smoke purifier.",
+        "If your station uses the smoke purifier, switch it on now and listen for airflow.",
+        "Put your hand near the intake and confirm you feel suction."
+      ],
+      "checks": ["Ventilation is running and I confirmed airflow by feel or by sound."],
+      "warn": ["No airflow means no laser. Do not run the job to 'just get it done'."],
+      "voice": "Turn on ventilation. Confirm the exhaust hose is attached, unkinked, and you can feel airflow before the laser fires."
+    },
+    {
+      "id": 5,
+      "phase": "Set up the machine",
+      "title": "Fit the laser platform",
+      "hazard": "med",
+      "seconds": 180,
+      "why": "The 3D printing build plate is not a laser bed. The laser platform lets debris and heat fall away instead of reflecting back into your part.",
+      "do": [
+        "Power the machine off at the switch before reaching inside.",
+        "Remove the 3D print build plate from the heatbed and set it on the rack.",
+        "If the bed is too high to work comfortably, use the touchscreen to lower it FIRST, then power off.",
+        "Seat the laser platform in the machine.",
+        "For small parts like dog tags: pull the platform slats, flip them so the LARGE flat surface faces up, and slide them close together so the tag cannot fall through.",
+        "Power the machine back on."
+      ],
+      "checks": [
+        "Laser platform is seated flat with no rock.",
+        "Slats are flipped wide-side-up and closed up tight under where the tag will sit."
+      ],
+      "warn": ["Hands out of the machine before you power it on."],
+      "voice": "Fit the laser platform. Power off, swap the build plate for the laser platform, flip the slats wide side up and close them together so the small tag cannot fall through."
+    },
+    {
+      "id": 6,
+      "phase": "Set up the machine",
+      "title": "Load and secure the blank",
+      "hazard": "low",
+      "seconds": 120,
+      "why": "A tag that shifts mid-job is scrap. A tag that is not flat engraves out of focus and comes out faint on one side.",
+      "do": [
+        "Wipe the face of the blank with isopropyl and a lint-free cloth. Fingerprints show up in the engraving.",
+        "Place the blank flat on the platform, roughly centered, well inside the work area.",
+        "Hold it down: drop it into the laser jig if your station has one, or tape the edges with masking tape.",
+        "Press down on each corner. It must not rock or slide."
+      ],
+      "checks": [
+        "Blank is clean, flat, and cannot be nudged with a fingertip.",
+        "Nothing else is left loose inside the machine — no tools, no cloth, no tape roll."
+      ],
+      "warn": ["Anything you leave in the enclosure will get lasered. Sweep it with your eyes before you close the door."],
+      "voice": "Clean the blank, lay it flat, and secure it in the jig or with tape. Confirm it does not rock. Remove all tools from the enclosure."
+    },
+    {
+      "id": 7,
+      "phase": "Set up the machine",
+      "title": "Set laser focus",
+      "hazard": "med",
+      "seconds": 180,
+      "why": "Focus is the single biggest factor in whether the engraving is crisp or a blurry grey smear.",
+      "do": [
+        "Place the focus calibration card in the rear middle of the laser platform.",
+        "On the touchscreen, open the laser module setup page — from the HMS page, or Settings then Toolbox.",
+        "Run the laser module setup and let it finish without interrupting it.",
+        "When it completes, open the front door and take the calibration card back out.",
+        "Return the card to the machine drawer. It is not disposable."
+      ],
+      "checks": [
+        "Setup completed with no error on screen.",
+        "Calibration card is OUT of the machine and back in the drawer."
+      ],
+      "warn": ["Leaving the calibration card in the machine means you will laser it. Physically look before you close the door."],
+      "voice": "Set laser focus. Put the calibration card in the rear middle, run laser module setup from Settings, Toolbox. When it finishes, remove the card and put it away."
+    },
+    {
+      "id": 8,
+      "phase": "Program the job",
+      "title": "Open Bambu Suite and connect",
+      "hazard": "none",
+      "seconds": 120,
+      "why": "The laptop has to be talking to this specific machine, or you will send your job to the wrong printer.",
+      "do": [
+        "Open Bambu Suite on the station laptop.",
+        "Confirm the printer shown in the device list is THIS machine, by its station name.",
+        "If it is not bound, bind it now — scan the QR code on the printer screen, or connect over the local network (LAN).",
+        "Confirm the device status reads Idle and the laser module is detected."
+      ],
+      "checks": ["Bambu Suite shows this station's H2D, connected, idle, laser module detected."],
+      "warn": ["Two machines in one room look identical on a screen. Check the name."],
+      "voice": "Open Bambu Suite. Confirm it is connected to this station's H2D and that the laser module is detected."
+    },
+    {
+      "id": 9,
+      "phase": "Program the job",
+      "title": "Load the dog tag design",
+      "hazard": "none",
+      "seconds": 120,
+      "why": "Starting from the shop's known-good template means the geometry and margins are already correct.",
+      "do": [
+        "Go to the Library in Bambu Suite.",
+        "Search for: tags",
+        "Choose the Pet ID Tag design.",
+        "Click Download, then Open."
+      ],
+      "checks": ["The dog tag design is open on the canvas."],
+      "warn": [],
+      "voice": "In Bambu Suite, open the Library, search tags, choose the Pet ID Tag design, then Download and Open."
+    },
+    {
+      "id": 10,
+      "phase": "Program the job",
+      "title": "Type your text",
+      "hazard": "none",
+      "seconds": 120,
+      "why": "This is the part everyone gets wrong. The laser will faithfully engrave your typo forever.",
+      "do": [
+        "Double-click the name on the design.",
+        "Type the text for your tag.",
+        "Check the text fits inside the tag outline with visible margin on all sides.",
+        "Keep it short. Long names shrink the font until it engraves as mush."
+      ],
+      "checks": [
+        "Spelling is correct. Read it out loud, letter by letter.",
+        "Text sits fully inside the tag with margin, and is not over the hole."
+      ],
+      "warn": ["Metal is not undoable. Proofread now, not after."],
+      "voice": "Double click the name and type your text. Read the spelling out loud letter by letter. Confirm it fits inside the tag with margin and does not run over the hole."
+    },
+    {
+      "id": 11,
+      "phase": "Program the job",
+      "title": "Select material and process",
+      "hazard": "low",
+      "seconds": 180,
+      "why": "The material preset carries the power, speed and pass count that Bambu tested for that exact blank. It is a starting point, not gospel.",
+      "do": [
+        "Set Process Type to: Laser Fill",
+        "In the Batch Material section, select the material that matches your blank — for example Stainless steel Tag - Silver.",
+        "Open the material panel and read the power, speed and passes it filled in.",
+        "Compare those numbers against the shop test card taped to the machine. If your instructor has tuned them, use the shop numbers.",
+        "Do not invent settings. If your blank is not on the card, run a small test swatch first."
+      ],
+      "checks": [
+        "Process Type is Laser Fill.",
+        "Material preset matches the actual blank in the machine.",
+        "Power, speed and passes match the shop test card, or an instructor approved the change."
+      ],
+      "warn": ["Too much power on thin anodizing burns through the coating and looks terrible. More power is not better."],
+      "voice": "Set process type to Laser Fill. Select the material preset that matches your blank. Check the power, speed and passes against the shop test card before continuing."
+    },
+    {
+      "id": 12,
+      "phase": "Program the job",
+      "title": "Position and frame the job",
+      "hazard": "low",
+      "seconds": 180,
+      "why": "The design has to land on the blank, not next to it. This is where alignment errors get caught for free.",
+      "do": [
+        "Use the toolhead camera preview in Bambu Suite to see the actual blank on the bed.",
+        "Drag the design so it sits centered on the blank in the camera view.",
+        "Run the frame or preview move so the head traces the job boundary.",
+        "Watch the trace through the closed door. Confirm it stays on the blank."
+      ],
+      "checks": [
+        "Framing pass stayed entirely on the blank with margin.",
+        "The design is not over the tag's hole or hanging off an edge."
+      ],
+      "warn": ["Watch the framing pass through the CLOSED door. Do not lean into the machine to look."],
+      "voice": "Use the camera preview to center the design on the blank, then run the framing pass and watch through the closed door that it stays on the tag."
+    },
+    {
+      "id": 13,
+      "phase": "Run",
+      "title": "Final safety check",
+      "hazard": "high",
+      "seconds": 60,
+      "why": "This is the last moment where stopping is free.",
+      "do": [
+        "Front door CLOSED. Lid CLOSED.",
+        "Nothing inside the enclosure except the platform and the secured blank.",
+        "Ventilation running.",
+        "Goggles on if there is any chance the enclosure gets opened while armed.",
+        "Bystanders clear of the machine.",
+        "Instructor knows you are about to fire."
+      ],
+      "checks": ["Every item above is physically true right now, not 'probably'."],
+      "warn": [
+        "With the enclosure closed the H2D meets Class 1. That protection only exists while it is actually closed.",
+        "If you have to open the door mid-job, STOP the job first."
+      ],
+      "voice": "Final safety check. Door closed, lid closed, enclosure empty except the blank, ventilation running, bystanders clear, instructor informed."
+    },
+    {
+      "id": 14,
+      "phase": "Run",
+      "title": "Start the job and watch the first pass",
+      "hazard": "high",
+      "seconds": 300,
+      "why": "Almost every laser failure announces itself in the first thirty seconds — wrong position, flare-up, no marking at all.",
+      "do": [
+        "Click Make in Bambu Suite to send the job.",
+        "Stay at the machine. Watch the first 30 seconds through the closed door.",
+        "Confirm the beam is landing on the blank and you can see marking appear.",
+        "Confirm you see smoke or haze being pulled toward the extraction, not pooling.",
+        "Then keep watching until it finishes. Stay within arm's reach of the stop control."
+      ],
+      "checks": [
+        "Marking is appearing in the right place.",
+        "No flame that persists. A brief spark is normal; a steady flame is not.",
+        "I have not walked away."
+      ],
+      "warn": [
+        "STOP THE JOB IMMEDIATELY IF: a flame persists, the tag shifts, you smell sharp acrid plastic, or the head crashes.",
+        "Do NOT open the door to investigate while the laser is armed. Stop first, then open."
+      ],
+      "voice": "Click Make to start. Watch the first thirty seconds through the closed door. Confirm marking is landing on the blank and smoke is being extracted. Stay with the machine until it finishes."
+    },
+    {
+      "id": 15,
+      "phase": "Finish",
+      "title": "Let it clear, then unload",
+      "hazard": "med",
+      "seconds": 180,
+      "why": "The tag is hot enough to blister you, and the enclosure is still full of particulate the moment the job ends.",
+      "do": [
+        "When the job completes, leave the door closed and let extraction run for at least 30 more seconds.",
+        "Open the front door.",
+        "Lift the tag out with pliers or tweezers. Assume it is HOT.",
+        "Set it on the metal cooling tray, not on the bench and not in your hand.",
+        "Give it a minute before you touch it."
+      ],
+      "checks": ["Extraction ran after the job. Tag was removed with tools and is cooling on the tray."],
+      "warn": ["Freshly engraved metal looks exactly like cool metal. Use the pliers every time."],
+      "voice": "Let extraction run thirty seconds after the job. Open the door and lift the tag out with pliers. It is hot. Set it on the cooling tray."
+    },
+    {
+      "id": 16,
+      "phase": "Finish",
+      "title": "Inspect and QC",
+      "hazard": "low",
+      "seconds": 120,
+      "why": "You check your own work before anyone else sees it.",
+      "do": [
+        "Once cool, wipe the tag with isopropyl and a lint-free cloth to lift soot.",
+        "Hold it under good light and check it against the QC criteria on this screen.",
+        "If it fails, do not just run it again — work out WHY first, using the troubleshooting screen."
+      ],
+      "checks": [
+        "Text is legible at arm's length.",
+        "Spelling is correct.",
+        "Engraving depth and contrast are even across the whole tag, not faded on one side.",
+        "No burn-through, no scorched halo around the letters.",
+        "Edges and hole are clean, no melted residue."
+      ],
+      "warn": [],
+      "voice": "Clean the tag with isopropyl and inspect it. Check legibility, spelling, even contrast, and no burn through."
+    },
+    {
+      "id": 17,
+      "phase": "Finish",
+      "title": "Shut down and leave the station clean",
+      "hazard": "low",
+      "seconds": 180,
+      "why": "The next student's safety depends on what you leave behind.",
+      "do": [
+        "Close the job in Bambu Suite. Do not leave a job queued.",
+        "Let ventilation run a further minute, then switch off the purifier.",
+        "Vacuum or brush debris off the laser platform into the tray.",
+        "Remove tape and jig, return blanks to bin B-4.",
+        "Confirm the focus calibration card is in the drawer.",
+        "Wipe the bench. Return pliers, cloth and isopropyl to the shadow board.",
+        "Sign the machine log: your name, date, material, job.",
+        "Report ANY problem in the log even if you fixed it."
+      ],
+      "checks": [
+        "Station is cleaner than you found it.",
+        "Machine log is signed.",
+        "No job left running or queued."
+      ],
+      "warn": [],
+      "voice": "Shut down. Close the job, run ventilation another minute, clean the platform, return tools and blanks, and sign the machine log."
+    }
+  ],
+
+  "troubleshooting": [
+    { "problem": "Engraving is faint or invisible", "causes": ["Focus not set, or calibration was interrupted", "Power too low or speed too high for this material", "Wrong material preset selected", "Blank is not flat, or has a protective film still on it"], "fix": "Confirm focus ran clean, peel any film, reseat the blank flat, then re-check the preset against the shop test card. Change ONE variable at a time." },
+    { "problem": "Engraving is dark on one side, faint on the other", "causes": ["Blank is not sitting flat — it is rocking or tilted", "Platform slats are uneven"], "fix": "Reseat the platform, re-level the slats, and clamp or tape the blank down at all corners." },
+    { "problem": "Burned through the anodizing / scorched halo", "causes": ["Too much power", "Too many passes", "Speed too slow"], "fix": "Reduce power first, then passes. Re-test on a scrap blank before committing to a good one." },
+    { "problem": "Design engraved next to the tag, not on it", "causes": ["Framing step was skipped", "Blank moved after positioning"], "fix": "Always run the framing pass and watch it. Re-secure the blank in the jig." },
+    { "problem": "Machine will not start the job", "causes": ["Door or lid not fully closed — interlock open", "Laser module not detected", "Wrong platform installed", "Job sent to a different printer"], "fix": "Close and latch the door, confirm the module is detected in Bambu Suite, and confirm you selected THIS station's machine." },
+    { "problem": "Persistent flame inside the enclosure", "causes": ["Wrong material", "Debris on the platform", "Far too much power"], "fix": "STOP THE JOB. Keep the door closed — an enclosed small fire starves. Get your instructor. Use the extinguisher if it does not self-extinguish. Do not open the door to blow on it." },
+    { "problem": "Sharp chemical smell", "causes": ["Material is not what you thought it was", "Ventilation failed or hose came loose"], "fix": "STOP. Ventilate the room. Get your instructor. Do not restart until the material is positively identified." }
+  ]
+}

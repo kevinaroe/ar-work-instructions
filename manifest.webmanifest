@@ -1,0 +1,10 @@
+{
+  "name": "AR Work Instructions",
+  "short_name": "Work Instr.",
+  "description": "Step-by-step AR work instructions for shop equipment.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0b0e14",
+  "theme_color": "#0b0e14"
+}
