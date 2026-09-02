@@ -1,7 +1,7 @@
 /* Offline cache. Shop Wi-Fi drops; the instructions must not.
    Bump CACHE when you edit any file below, or headsets will keep
    serving the old sheet from cache. */
-const CACHE = 'arwi-v1';
+const CACHE = 'arwi-v2';
 const ASSETS = [
   './',
   './index.html',

@@ -2,7 +2,7 @@
   "id": "dogtag-h2d",
   "title": "Laser Engrave a Dog Tag",
   "machine": "Bambu Lab H2D — Laser Module",
-  "revision": "1.0",
+  "revision": "1.1",
   "revised": "2026-09-02",
   "approvedBy": "REPLACE WITH INSTRUCTOR NAME",
   "estimatedMinutes": 25,
@@ -95,19 +95,28 @@
     {
       "id": 4,
       "phase": "Prepare",
-      "title": "Turn on ventilation",
-      "hazard": "med",
+      "title": "Identify your extraction, then start it",
+      "hazard": "high",
       "seconds": 60,
-      "why": "Engraving produces fine particulate and fumes. The extraction has to be moving air BEFORE the beam fires.",
+      "why": "Engraving produces fine particulate and fumes. Not every station is plumbed the same way, and you cannot tell whether extraction is working until you know which kind you are standing at.",
       "do": [
-        "Confirm the exhaust hose is clamped to the port on the back of the printer and is not kinked or crushed.",
-        "Confirm the far end vents outdoors, or into the smoke purifier.",
-        "If your station uses the smoke purifier, switch it on now and listen for airflow.",
-        "Put your hand near the intake and confirm you feel suction."
+        "Follow the exhaust hose from the back of the printer to where it ENDS. That tells you which station you are on.",
+        "DUCTED STATION: the hose runs to a wall or window port and vents outdoors. There is no box to switch on.",
+        "PURIFIER STATION: the hose runs into a filter box on or under the bench. Switch the purifier on now and listen for the fan.",
+        "Either kind: confirm the hose is clamped at the printer port and is not kinked, crushed or pulled loose anywhere along its length.",
+        "Put your hand near the intake and confirm you feel suction.",
+        "If you cannot tell which kind of station you are on, stop and ask your instructor. Do not guess."
       ],
-      "checks": ["Ventilation is running and I confirmed airflow by feel or by sound."],
-      "warn": ["No airflow means no laser. Do not run the job to 'just get it done'."],
-      "voice": "Turn on ventilation. Confirm the exhaust hose is attached, unkinked, and you can feel airflow before the laser fires."
+      "checks": [
+        "I followed the hose and identified my station: ducted outdoors, or smoke purifier.",
+        "If purifier: it is switched ON and I can hear the fan running.",
+        "The hose is clamped and unkinked, and I confirmed airflow by feel."
+      ],
+      "warn": [
+        "No airflow means no laser. Do not run the job to 'just get it done'.",
+        "A purifier that is plugged in is not a purifier that is running. Listen for it."
+      ],
+      "voice": "Identify your extraction. Follow the hose to where it ends. If it vents outdoors, you are on a ducted station. If it runs into a filter box, switch the purifier on and listen for the fan. Either way, confirm the hose is unkinked and you feel suction before the laser fires."
     },
     {
       "id": 5,
@@ -364,7 +373,7 @@
       "why": "The next student's safety depends on what you leave behind.",
       "do": [
         "Close the job in Bambu Suite. Do not leave a job queued.",
-        "Let ventilation run a further minute, then switch off the purifier.",
+        "Let ventilation run a further minute after the job ends, then switch the purifier off. On a ducted station, leave the duct alone.",
         "Vacuum or brush debris off the laser platform into the tray.",
         "Remove tape and jig, return blanks to bin B-4.",
         "Confirm the focus calibration card is in the drawer.",
@@ -378,7 +387,7 @@
         "No job left running or queued."
       ],
       "warn": [],
-      "voice": "Shut down. Close the job, run ventilation another minute, clean the platform, return tools and blanks, and sign the machine log."
+      "voice": "Shut down. Close the job, run extraction another minute, clean the platform, return tools and blanks, and sign the machine log."
     }
   ],
 
